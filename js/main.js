@@ -1,7 +1,7 @@
 import { renderIcons, iconSVG } from './icons.js';
 
-// Endereço do app NutriAli (hospedado na Hostinger). Todos os botões
-// "Entrar" / "Testar grátis" usam este endereço + o caminho em data-app.
+// Endereço do app NutriAli (hospedado na Hostinger). Todos os botões que
+// levam ao app usam este endereço + o caminho em data-app.
 const APP_URL = 'https://nutriali.srv1890478.hstgr.cloud';
 
 const root = document.documentElement;

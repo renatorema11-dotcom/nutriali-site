@@ -201,11 +201,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .45);
 }
 .btn--light:hover { transform: translateY(-1px); background: var(--brand-50); }
-.btn--outline-light {
-  color: #fff;
-  border-color: rgba(255, 255, 255, .35);
-}
-.btn--outline-light:hover { background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .6); }
 .btn--lg { --h: 54px; padding: 0 26px; font-size: 1.02rem; border-radius: 14px; }
 
 /* ---------- Selo / eyebrow ---------- */
