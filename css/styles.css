@@ -340,7 +340,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--text);
 }
 .nav__sheet a:not(.btn):hover { background: var(--brand-50); }
-.nav__sheet .btn { margin-top: 6px; }
 @keyframes sheet-in { from { opacity: 0; transform: translateY(-8px) scale(.98); } }
 
 /* ---------- Hero ---------- */
@@ -1452,7 +1451,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 @media (max-width: 640px) {
   :root { --header-h: 64px; }
-  .nav__login { display: none; }
   .nav__actions .btn--primary { --h: 40px; padding: 0 14px; font-size: .88rem; }
   .brand { font-size: 1.2rem; }
   .brand__mark { width: 34px; height: 34px; }

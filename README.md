@@ -19,5 +19,5 @@ O Traefik da VPS cuida do endereço e do HTTPS.
 
 - Textos e seções: `index.html`
 - Cores e layout: `css/styles.css`
-- Endereço do app (botões "Entrar" e "Testar grátis"): `APP_URL` no começo de `js/main.js`
+- Endereço do app (botões que levam ao NutriAli): `APP_URL` no começo de `js/main.js`
 - Cenas 3D: `js/three/`
