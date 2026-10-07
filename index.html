@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NutriAli — Acompanhamento nutricional com voz própria</title>
+  <meta name="description" content="O NutriAli conecta nutricionistas e pacientes: o Ali, assistente de voz com IA, atende seus pacientes 24h, e você gera planos alimentares com IA e acompanha a evolução de cada um em um só painel.">
+  <meta name="theme-color" content="#276e58">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="NutriAli — Acompanhamento nutricional com voz própria">
+  <meta property="og:description" content="Assistente de voz com IA para consultórios de nutrição. Planos com IA, evolução em gráficos e o Ali disponível 24h para seus pacientes.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" crossorigin>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ============ NAVEGAÇÃO ============ -->
+  <header class="nav" id="topo">
+    <div class="container nav__inner">
+      <a class="brand" href="#inicio" aria-label="NutriAli — voltar ao início">
+        <span class="brand__mark"><i data-icon="apple"></i></span>
+        <span class="brand__name">NutriAli</span>
+      </a>
+
+      <nav class="nav__links" aria-label="Principal">
+        <a href="#ali">Assistente Ali</a>
+        <a href="#paciente">Para pacientes</a>
+        <a href="#nutricionista">Para nutricionistas</a>
+        <a href="#empresa">A empresa</a>
+        <a href="#preco">Preço</a>
+        <a href="#faq">Dúvidas</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a class="btn btn--ghost nav__login" data-app="/login">Entrar</a>
+        <a class="btn btn--primary" data-app="/register">Testar grátis</a>
+        <button class="nav__toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+          <i data-icon="menu"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="nav__sheet" id="menu-mobile" hidden>
+      <a href="#ali">Assistente Ali</a>
+      <a href="#paciente">Para pacientes</a>
+      <a href="#nutricionista">Para nutricionistas</a>
+      <a href="#empresa">A empresa</a>
+      <a href="#preco">Preço</a>
+      <a href="#faq">Dúvidas</a>
+      <a class="btn btn--glass" data-app="/login">Entrar</a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio" data-3d>
+      <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <span class="eyebrow" data-intro><i data-icon="mic"></i> Assistente de voz com IA para consultórios de nutrição</span>
+          <h1 class="hero__title" data-split>
+            Seu acompanhamento nutricional
+            <span class="hl">com voz própria<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0,5 Q50,0 100,5" stroke="currentColor" stroke-width="8" fill="none"/></svg></span>
+          </h1>
+          <p class="hero__lead" data-intro>
+            O NutriAli dá ao seu paciente o <strong>Ali</strong>, um assistente de voz disponível 24 horas para tirar dúvidas da dieta — e a você, um painel com planos gerados por IA e a evolução de cada paciente em gráficos claros.
+          </p>
+          <div class="hero__ctas" data-intro>
+            <a class="btn btn--primary btn--lg" data-app="/register">Começar teste grátis <i data-icon="arrow-right" class="i-arrow"></i></a>
+            <a class="btn btn--glass btn--lg" href="#como-funciona"><i data-icon="circle-play"></i> Ver como funciona</a>
+          </div>
+          <ul class="hero__proof" data-intro>
+            <li><i data-icon="circle-check"></i> 30 dias grátis</li>
+            <li><i data-icon="circle-check"></i> Sem fidelidade</li>
+            <li><i data-icon="circle-check"></i> Pacientes ilimitados</li>
+          </ul>
+        </div>
+
+        <div class="hero__stage" id="hero-stage" aria-hidden="true">
+          <div class="hero__fallback">
+            <span class="brand__mark brand__mark--xl"><i data-icon="apple"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cartões que acompanham o celular 3D -->
+      <div class="chip" data-chip="0" aria-hidden="true">
+        <span class="chip__icon chip__icon--brand"><i data-icon="audio-lines"></i></span>
+        <span><strong>Ali</strong><span>Registrei 82,5 kg no seu acompanhamento.</span></span>
+      </div>
+      <div class="chip" data-chip="1" aria-hidden="true">
+        <span class="chip__icon chip__icon--blue"><i data-icon="droplet"></i></span>
+        <span><strong>Água hoje</strong><span>1,5 de 2 L</span><span class="chip__bar"><i></i></span></span>
+      </div>
+      <div class="chip" data-chip="2" aria-hidden="true">
+        <span class="chip__icon chip__icon--orange"><i data-icon="flame"></i></span>
+        <span><strong>Sequência</strong><span>5 dias seguidos</span></span>
+      </div>
+
+      <a class="scroll-cue" href="#numeros" aria-label="Rolar para o conteúdo">
+        <span class="scroll-cue__mouse"><span></span></span>
+        Role para explorar
+      </a>
+    </section>
+
+    <!-- ============ NÚMEROS ============ -->
+    <section class="stats" id="numeros" aria-label="Destaques">
+      <div class="container stats__grid" data-stagger>
+        <div class="stat">
+          <div class="stat__num"><span data-count="24">24</span>h</div>
+          <p class="stat__label">de Ali disponível para tirar as dúvidas dos seus pacientes</p>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><span data-count="11">11</span></div>
+          <p class="stat__label">idiomas disponíveis na interface do app</p>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><i data-icon="infinity" class="stat__icon"></i></div>
+          <p class="stat__label">pacientes por nutricionista, sem custo extra</p>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><span data-count="30">30</span> dias</div>
+          <p class="stat__label">para testar grátis, sem fidelidade</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ALI (ASSISTENTE DE VOZ) ============ -->
+    <section class="section ali" id="ali" data-3d>
+      <div class="container ali__grid">
+        <div class="ali__stage" data-reveal>
+          <canvas id="orb-canvas" aria-hidden="true"></canvas>
+          <div class="ali__status" aria-hidden="true">
+            <span class="wave" data-wave><i></i><i></i><i></i><i></i><i></i></span>
+            <span data-status>Toque para falar com o Ali</span>
+          </div>
+        </div>
+
+        <div class="ali__copy">
+          <span class="eyebrow eyebrow--dark" data-reveal><i data-icon="audio-lines"></i> Conheça o Ali</span>
+          <h2 data-reveal>O assistente de voz que conhece o plano de cada paciente</h2>
+          <p class="ali__lead" data-reveal>
+            Seu paciente toca no microfone e conversa. O Ali responde por voz, sempre com base nos dados que você cadastrou — e vai além das respostas: registra o peso, anota refeições e pede consultas.
+          </p>
+          <p class="sr-only">Exemplo de conversa: o paciente pergunta o que tem no almoço e o Ali responde com o plano do dia; o paciente informa o peso e o Ali registra no acompanhamento; o paciente pede uma consulta e o Ali envia o pedido para a nutricionista.</p>
+          <div class="transcript" data-transcript aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <ul class="abilities" data-stagger>
+          <li class="ability">
+            <span class="ability__icon"><i data-icon="file-text"></i></span>
+            <h3>Consulta o plano</h3>
+            <q>Qual é o meu plano para hoje?</q>
+          </li>
+          <li class="ability">
+            <span class="ability__icon"><i data-icon="scale"></i></span>
+            <h3>Registra medidas</h3>
+            <q>Meu peso hoje é 82,5.</q>
+          </li>
+          <li class="ability">
+            <span class="ability__icon"><i data-icon="utensils"></i></span>
+            <h3>Anota refeições</h3>
+            <q>Comi frango com arroz no almoço.</q>
+          </li>
+          <li class="ability">
+            <span class="ability__icon"><i data-icon="calendar-plus"></i></span>
+            <h3>Pede consultas</h3>
+            <q>Quero marcar uma consulta.</q>
+          </li>
+        </ul>
+
+        <ul class="guardrails" data-reveal>
+          <li><i data-icon="user-check"></i> Acessa somente os dados do próprio paciente</li>
+          <li><i data-icon="shield-check"></i> Nenhuma ação apaga informações</li>
+          <li><i data-icon="scroll-text"></i> Toda ação fica registrada para auditoria</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PARA O PACIENTE (TOUR 3D) ============ -->
+    <section class="section tour" id="paciente" data-3d>
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow" data-reveal><i data-icon="smartphone"></i> Para o paciente</span>
+          <h2 data-reveal>Um app que acompanha cada escolha do dia</h2>
+          <p data-reveal>Tudo o que seu paciente precisa para seguir o plano — refeições, hidratação, humor, conquistas e evolução — num app leve, que funciona no navegador do celular.</p>
+        </header>
+
+        <div class="tour__grid">
+          <div class="tour__steps">
+            <article class="tour__step is-active" data-step="0">
+              <span class="tour__num">01 — Painel do dia</span>
+              <h3>Tudo do dia em um só lugar</h3>
+              <p>Meta de peso, dica do dia gerada por IA e as próximas consultas logo na primeira tela.</p>
+              <ul class="checklist">
+                <li><i data-icon="circle-check"></i> Meta vs. atual com o progresso em tempo real</li>
+                <li><i data-icon="circle-check"></i> Dica nutricional diária criada pela IA</li>
+                <li><i data-icon="circle-check"></i> Consultas agendadas com atalho para o calendário</li>
+              </ul>
+            </article>
+
+            <article class="tour__step" data-step="1">
+              <span class="tour__num">02 — Diário alimentar</span>
+              <h3>Fotografou, registrou, recebeu feedback</h3>
+              <p>O paciente marca se seguiu, alterou ou pulou cada refeição e pode enviar uma foto do prato. A IA avalia a porção e devolve um retorno amigável na hora.</p>
+              <ul class="checklist">
+                <li><i data-icon="circle-check"></i> Refeição realizada, alterada ou pulada em um toque</li>
+                <li><i data-icon="circle-check"></i> Análise da foto do prato com IA</li>
+                <li><i data-icon="circle-check"></i> Consumo real registrado para você revisar</li>
+              </ul>
+            </article>
+
+            <article class="tour__step" data-step="2">
+              <span class="tour__num">03 — Hábitos</span>
+              <h3>Água, humor e conquistas</h3>
+              <p>Pequenos hábitos viram vitórias diárias: controle de hidratação, diário de humor e conquistas que mantêm a sequência viva.</p>
+              <ul class="checklist">
+                <li><i data-icon="circle-check"></i> Meta diária de água com registro rápido</li>
+                <li><i data-icon="circle-check"></i> Diário de humor em um toque</li>
+                <li><i data-icon="circle-check"></i> Conquistas e sequência de dias seguidos</li>
+              </ul>
+            </article>
+
+            <article class="tour__step" data-step="3">
+              <span class="tour__num">04 — Evolução</span>
+              <h3>Progresso que motiva</h3>
+              <p>Gráficos de evolução, metas diárias de macronutrientes e cardápios criativos gerados por IA — com exportação do plano em PDF.</p>
+              <ul class="checklist">
+                <li><i data-icon="circle-check"></i> Evolução do peso em gráficos claros</li>
+                <li><i data-icon="circle-check"></i> Metas de carboidratos, proteínas e gorduras</li>
+                <li><i data-icon="circle-check"></i> Cardápios criativos com IA e plano em PDF</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="tour__stage" aria-hidden="true">
+            <div class="tour__sticky">
+              <canvas id="tour-canvas"></canvas>
+              <div class="tour__dots">
+                <button type="button" class="is-active" data-goto="0" tabindex="-1"></button>
+                <button type="button" data-goto="1" tabindex="-1"></button>
+                <button type="button" data-goto="2" tabindex="-1"></button>
+                <button type="button" data-goto="3" tabindex="-1"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PARA O NUTRICIONISTA ============ -->
+    <section class="section pro" id="nutricionista">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow" data-reveal><i data-icon="stethoscope"></i> Para o nutricionista</span>
+          <h2 data-reveal>Seu consultório inteiro em um painel</h2>
+          <p data-reveal>Acompanhe todos os pacientes em tempo real, gere planos alimentares com IA em segundos e decida o que vai para cada paciente. A IA acelera o trabalho; a prescrição continua sua.</p>
+        </header>
+
+        <div class="pro__stage">
+          <div class="pro__scene" data-pro-scene>
+            <div class="dash" aria-label="Exemplo do painel do nutricionista no NutriAli" role="img">
+              <div class="dash__bar" aria-hidden="true">
+                <span class="dash__dots"><i></i><i></i><i></i></span>
+                <span class="dash__title">Painel do nutricionista</span>
+                <span></span>
+              </div>
+              <div class="dash__body" aria-hidden="true">
+                <aside class="dash__side">
+                  <div class="dash__brand"><span class="brand__mark brand__mark--sm"><i data-icon="apple"></i></span> NutriAli</div>
+                  <nav class="dash__nav">
+                    <span class="is-active"><i data-icon="layout-dashboard"></i> Dashboard</span>
+                    <span><i data-icon="users"></i> Pacientes</span>
+                    <span><i data-icon="message-square"></i> Chat com Pacientes</span>
+                    <span><i data-icon="message-square-text"></i> Assistente IA</span>
+                    <span><i data-icon="user"></i> Meu Perfil</span>
+                  </nav>
+                  <div class="dash__me">
+                    <span class="dash__avatar">A</span>
+                    <span><strong>Dra. Ana Ribeiro</strong><small>Nutricionista</small></span>
+                  </div>
+                </aside>
+
+                <div class="dash__main">
+                  <div class="dash__head">
+                    <div>
+                      <strong class="dash__hello">Olá, Dra. Ana</strong>
+                      <small>Resumo em tempo real do seu consultório.</small>
+                    </div>
+                    <span class="mini-btn mini-btn--primary"><i data-icon="user-plus"></i> Novo Paciente</span>
+                  </div>
+
+                  <div class="dash__row">
+                    <div class="dcard">
+                      <h4><i data-icon="bell" class="c-amber"></i> Notificações do Consultório (2)</h4>
+                      <div class="alert">
+                        <span>Rascunho de plano para <b>Carlos Lima</b> aguarda sua revisão e aprovação.</span>
+                        <span class="mini-btn mini-btn--amber">Atender</span>
+                      </div>
+                      <div class="alert">
+                        <span>Paciente <b>Juliana Alves</b> cadastrada e aguarda criação de plano alimentar.</span>
+                        <span class="mini-btn mini-btn--amber">Atender</span>
+                      </div>
+                      <span class="mini-btn mini-btn--outline dash__wide">Abrir Assistente com IA</span>
+                    </div>
+
+                    <div class="dcard">
+                      <h4><i data-icon="calendar" class="c-brand"></i> Consultas</h4>
+                      <div class="appt">
+                        <span class="appt__icon"><i data-icon="calendar"></i></span>
+                        <span><b>Mariana Costa</b><small>Qui · 14:30</small></span>
+                        <span class="badge badge--warn">Retorno</span>
+                      </div>
+                      <div class="appt">
+                        <span class="appt__icon"><i data-icon="calendar"></i></span>
+                        <span><b>Rafael Souza</b><small>Sex · 09:00</small></span>
+                        <span class="badge badge--none">Primeira</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="dash__row">
+                    <div class="dcard">
+                      <h4>Pacientes Recentes <span class="dash__link">Ver todos (24) <i data-icon="chevron-right"></i></span></h4>
+                      <table class="dtable">
+                        <thead><tr><th>Nome</th><th class="hide-sm">Objetivo</th><th>Status do Plano</th><th class="hide-sm">Ação</th></tr></thead>
+                        <tbody>
+                          <tr><td>Mariana Costa</td><td class="hide-sm">Emagrecimento</td><td><span class="badge badge--ok">Ativo</span></td><td class="hide-sm link">Abrir Prontuário</td></tr>
+                          <tr><td>Carlos Lima</td><td class="hide-sm">Ganho de massa</td><td><span class="badge badge--warn">Rascunho (IA)</span></td><td class="hide-sm link">Abrir Prontuário</td></tr>
+                          <tr><td>Juliana Alves</td><td class="hide-sm">Saúde e bem-estar</td><td><span class="badge badge--none">Sem plano</span></td><td class="hide-sm link">Abrir Prontuário</td></tr>
+                          <tr><td>Rafael Souza</td><td class="hide-sm">Performance</td><td><span class="badge badge--ok">Ativo</span></td><td class="hide-sm link">Abrir Prontuário</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="dcard">
+                      <h4><i data-icon="target" class="c-brand"></i> Objetivos dos pacientes</h4>
+                      <div class="goals">
+                        <div class="goal"><span>Emagrecimento</span><b>46%</b><i style="--w:46%"></i></div>
+                        <div class="goal"><span>Ganho de massa</span><b>25%</b><i style="--w:25%;--c:#8b5cf6"></i></div>
+                        <div class="goal"><span>Saúde e bem-estar</span><b>21%</b><i style="--w:21%;--c:#f59e0b"></i></div>
+                        <div class="goal"><span>Performance</span><b>8%</b><i style="--w:8%;--c:#3b82f6"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cartões flutuantes em camadas 3D -->
+            <div class="float-card float-card--1" aria-hidden="true">
+              <span class="float-card__icon float-card__icon--amber"><i data-icon="wand-sparkles"></i></span>
+              <span>
+                <strong>Rascunho gerado pela IA</strong>
+                <small>Plano de 7 dias para Carlos Lima</small>
+                <span class="float-card__actions"><span class="mini-btn mini-btn--outline">Revisar</span><span class="mini-btn mini-btn--amber-solid">Aprovar plano</span></span>
+              </span>
+            </div>
+            <div class="float-card float-card--2" aria-hidden="true">
+              <span class="float-card__icon float-card__icon--green"><i data-icon="circle-check"></i></span>
+              <span>
+                <strong>Plano aprovado</strong>
+                <small>Mariana já pode ver o novo plano no app.</small>
+              </span>
+            </div>
+            <div class="float-card float-card--3" aria-hidden="true">
+              <span class="float-card__icon float-card__icon--violet"><i data-icon="chart-line"></i></span>
+              <span>
+                <strong>Evolução · Mariana Costa</strong>
+                <small>−3,6 kg em 8 semanas</small>
+                <svg class="spark" viewBox="0 0 120 32" preserveAspectRatio="none"><path d="M2 6 L18 9 L34 11 L50 13 L66 18 L82 21 L98 24 L118 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="features" data-stagger>
+          <article class="feature">
+            <span class="icon-box icon-box--brand"><i data-icon="wand-sparkles"></i></span>
+            <h3>Planos com IA em segundos</h3>
+            <p>Informe restrições e preferências e receba um rascunho completo de plano alimentar, dia a dia e refeição por refeição.</p>
+          </article>
+          <article class="feature">
+            <span class="icon-box icon-box--amber"><i data-icon="clipboard-check"></i></span>
+            <h3>Você revisa e aprova</h3>
+            <p>O rascunho fica visível só para você. Ajuste o que quiser e publique para o paciente com um clique.</p>
+          </article>
+          <article class="feature">
+            <span class="icon-box icon-box--blue"><i data-icon="activity"></i></span>
+            <h3>Prontuário com evolução</h3>
+            <p>Histórico de peso e percentual de gordura de cada paciente, com gráficos claros de progresso.</p>
+          </article>
+          <article class="feature">
+            <span class="icon-box icon-box--violet"><i data-icon="calendar-check"></i></span>
+            <h3>Agenda de consultas</h3>
+            <p>Primeira consulta ou retorno: organize os horários e adicione direto ao calendário.</p>
+          </article>
+          <article class="feature">
+            <span class="icon-box icon-box--rose"><i data-icon="message-square-text"></i></span>
+            <h3>Chat e assistente com IA</h3>
+            <p>Converse com seus pacientes e conte com um assistente de IA para apoiar a rotina do consultório.</p>
+          </article>
+          <article class="feature">
+            <span class="icon-box icon-box--orange"><i data-icon="bell"></i></span>
+            <h3>Alertas do consultório</h3>
+            <p>Saiba na hora quem aguarda plano e quais rascunhos esperam pela sua aprovação.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMO FUNCIONA ============ -->
+    <section class="section howto-section" id="como-funciona">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow" data-reveal><i data-icon="rocket"></i> Como funciona</span>
+          <h2 data-reveal>Do cadastro ao acompanhamento em três passos</h2>
+        </header>
+
+        <div class="howto">
+          <div class="howto__line" aria-hidden="true"><span data-line></span></div>
+          <article class="howto__step" data-reveal>
+            <span class="howto__badge"><i data-icon="user-plus"></i><b>1</b></span>
+            <h3>Cadastre seus pacientes</h3>
+            <p>Cada paciente recebe login próprio com senha temporária única e troca a senha no primeiro acesso. Sem senhas compartilhadas.</p>
+          </article>
+          <article class="howto__step" data-reveal style="--delay:.12s">
+            <span class="howto__badge"><i data-icon="mic"></i><b>2</b></span>
+            <h3>Eles conversam com o Ali</h3>
+            <p>No app do paciente, o Ali responde dúvidas sobre o plano e o acompanhamento, sempre com base nos dados que você cadastrou.</p>
+          </article>
+          <article class="howto__step" data-reveal style="--delay:.24s">
+            <span class="howto__badge"><i data-icon="stethoscope"></i><b>3</b></span>
+            <h3>Você acompanha tudo</h3>
+            <p>Gere planos com IA, ajuste, publique e acompanhe a evolução de cada paciente no seu painel de nutricionista.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SEGURANÇA ============ -->
+    <section class="section trust" id="seguranca">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow" data-reveal><i data-icon="shield-check"></i> Segurança e privacidade</span>
+          <h2 data-reveal>Dados de saúde tratados com o cuidado que merecem</h2>
+          <p data-reveal>Cada detalhe do NutriAli foi pensado para proteger a relação entre você e seus pacientes.</p>
+        </header>
+
+        <div class="trust__grid" data-stagger>
+          <article class="trust__card">
+            <span class="icon-box icon-box--brand"><i data-icon="key-round"></i></span>
+            <div><h3>Login individual</h3><p>Cada paciente tem acesso próprio, com senha temporária e troca obrigatória no primeiro login.</p></div>
+          </article>
+          <article class="trust__card">
+            <span class="icon-box icon-box--brand"><i data-icon="lock"></i></span>
+            <div><h3>Acesso controlado</h3><p>Regras de segurança no banco de dados garantem que cada paciente veja apenas o próprio registro.</p></div>
+          </article>
+          <article class="trust__card">
+            <span class="icon-box icon-box--brand"><i data-icon="user-check"></i></span>
+            <div><h3>Ali com limites claros</h3><p>O assistente só acessa os dados de quem está conversando com ele e nunca apaga informações.</p></div>
+          </article>
+          <article class="trust__card">
+            <span class="icon-box icon-box--brand"><i data-icon="scroll-text"></i></span>
+            <div><h3>Trilha de auditoria</h3><p>Cada ação executada pelo Ali fica registrada, para você saber exatamente o que foi feito.</p></div>
+          </article>
+          <article class="trust__card">
+            <span class="icon-box icon-box--brand"><i data-icon="eye-off"></i></span>
+            <div><h3>Seus dados são seus</h3><p>Nenhuma informação é vendida ou compartilhada, e os dados podem ser exportados a qualquer momento.</p></div>
+          </article>
+          <article class="trust__card">
+            <span class="icon-box icon-box--brand"><i data-icon="stethoscope"></i></span>
+            <div><h3>A decisão é sempre sua</h3><p>A IA gera rascunhos e responde dúvidas pontuais. Diagnóstico e prescrição continuam com o nutricionista.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ A EMPRESA ============ -->
+    <section class="section company" id="empresa" data-3d>
+      <div class="container company__grid">
+        <div class="company__stage" data-reveal>
+          <canvas id="brand-canvas" aria-hidden="true"></canvas>
+        </div>
+
+        <div class="company__copy">
+          <span class="eyebrow" data-reveal><i data-icon="leaf"></i> A empresa</span>
+          <h2 data-reveal>Tecnologia que aproxima nutricionistas e pacientes</h2>
+          <p data-reveal>A NutriAli nasceu de um problema que todo consultório conhece: o paciente sai da consulta motivado, mas as dúvidas aparecem no dia a dia — longe do nutricionista.</p>
+          <p data-reveal>Por isso criamos uma plataforma que mantém o acompanhamento vivo entre uma consulta e outra, com inteligência artificial trabalhando a favor do profissional, e nunca no lugar dele.</p>
+
+          <div class="values" data-stagger>
+            <div class="value">
+              <span class="icon-box icon-box--brand"><i data-icon="heart-pulse"></i></span>
+              <div><h3>Cuidado contínuo</h3><p>Acompanhamento que não para quando a consulta termina.</p></div>
+            </div>
+            <div class="value">
+              <span class="icon-box icon-box--amber"><i data-icon="sparkles"></i></span>
+              <div><h3>IA com responsabilidade</h3><p>A tecnologia acelera o trabalho; as decisões clínicas são do nutricionista.</p></div>
+            </div>
+            <div class="value">
+              <span class="icon-box icon-box--blue"><i data-icon="shield-check"></i></span>
+              <div><h3>Privacidade por padrão</h3><p>Segurança pensada desde o primeiro acesso de cada paciente.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PREÇO ============ -->
+    <section class="section pricing" id="preco">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow" data-reveal><i data-icon="sparkles"></i> Preço</span>
+          <h2 data-reveal>Preço simples, sem surpresas</h2>
+          <p data-reveal>Sem contrato, sem taxa de instalação. Cancele quando quiser.</p>
+        </header>
+
+        <div class="price-card tilt" data-reveal data-tilt>
+          <span class="glare" aria-hidden="true"></span>
+          <div class="price-card__main">
+            <span class="price-card__tag">Preço de lançamento</span>
+            <p class="price-card__plan">Plano Profissional</p>
+            <p class="price-card__price"><span>R$</span> 79<small>/mês por nutricionista</small></p>
+            <p class="price-card__note">30 dias grátis para testar. Sem fidelidade.</p>
+            <a class="btn btn--light btn--lg" data-app="/register">Começar teste grátis <i data-icon="arrow-right" class="i-arrow"></i></a>
+          </div>
+          <ul class="price-card__list">
+            <li><i data-icon="circle-check"></i> Pacientes ilimitados no seu consultório</li>
+            <li><i data-icon="circle-check"></i> Assistente de voz Ali no app do paciente</li>
+            <li><i data-icon="circle-check"></i> Geração de planos alimentares com IA</li>
+            <li><i data-icon="circle-check"></i> Gráficos de evolução de peso, medidas e gordura</li>
+            <li><i data-icon="circle-check"></i> App do paciente com login seguro individual</li>
+            <li><i data-icon="circle-check"></i> Suporte direto com o time de desenvolvimento</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow" data-reveal><i data-icon="message-square"></i> Dúvidas</span>
+          <h2 data-reveal>Perguntas frequentes</h2>
+        </header>
+
+        <div class="faq" data-stagger>
+          <details>
+            <summary>Preciso instalar algo no meu computador? <span class="faq__plus"><i data-icon="plus"></i></span></summary>
+            <div class="faq__body"><p>Não. O NutriAli funciona no navegador do computador e do celular. Seus pacientes usam o mesmo site, com login próprio.</p></div>
+          </details>
+          <details>
+            <summary>Os dados dos meus pacientes ficam seguros? <span class="faq__plus"><i data-icon="plus"></i></span></summary>
+            <div class="faq__body"><p>Sim. Cada paciente acessa apenas o próprio registro, com senha individual e troca obrigatória no primeiro login. O acesso aos dados é controlado por regras de segurança no banco, e nenhuma informação é vendida ou compartilhada.</p></div>
+          </details>
+          <details>
+            <summary>A IA substitui o atendimento do nutricionista? <span class="faq__plus"><i data-icon="plus"></i></span></summary>
+            <div class="faq__body"><p>Não. A IA gera rascunhos de planos e responde dúvidas pontuais dos pacientes — sempre com base nos dados que você cadastrou. O diagnóstico e a prescrição continuam sendo seus.</p></div>
+          </details>
+          <details>
+            <summary>Como o paciente conversa com o Ali? <span class="faq__plus"><i data-icon="plus"></i></span></summary>
+            <div class="faq__body"><p>Pelo app do paciente, no navegador do celular ou do computador: é só tocar no microfone e falar. O Ali responde por voz e pode consultar o plano, registrar o peso, anotar refeições e pedir consultas.</p></div>
+          </details>
+          <details>
+            <summary>O app funciona em outros idiomas? <span class="faq__plus"><i data-icon="plus"></i></span></summary>
+            <div class="faq__body"><p>Sim. A interface pode ser exibida em 11 idiomas, entre eles português, inglês, espanhol, francês e italiano.</p></div>
+          </details>
+          <details>
+            <summary>E se eu quiser cancelar? <span class="faq__plus"><i data-icon="plus"></i></span></summary>
+            <div class="faq__body"><p>É só avisar um mês antes. Sem multa, sem fidelidade. Seus dados podem ser exportados a qualquer momento.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA FINAL ============ -->
+    <section class="cta" aria-labelledby="cta-title">
+      <div class="cta__glow" aria-hidden="true"></div>
+      <div class="container cta__inner">
+        <span class="brand__mark brand__mark--lg" data-reveal><i data-icon="apple"></i></span>
+        <h2 id="cta-title" data-reveal>Mais tempo para cuidar dos seus pacientes</h2>
+        <p data-reveal>Comece hoje, grátis, com seus primeiros pacientes.</p>
+        <div class="cta__actions" data-reveal>
+          <a class="btn btn--light btn--lg" data-app="/register">Criar minha conta grátis <i data-icon="arrow-right" class="i-arrow"></i></a>
+          <a class="btn btn--outline-light btn--lg" data-app="/login">Já tenho conta</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ RODAPÉ ============ -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="#inicio">
+          <span class="brand__mark"><i data-icon="apple"></i></span>
+          <span class="brand__name">NutriAli</span>
+        </a>
+        <p>Plataforma de conexão entre nutricionistas e pacientes, com acompanhamento de planos e IA.</p>
+      </div>
+      <nav aria-label="Produto">
+        <h4>Produto</h4>
+        <a href="#ali">Assistente Ali</a>
+        <a href="#paciente">Para pacientes</a>
+        <a href="#nutricionista">Para nutricionistas</a>
+        <a href="#preco">Preço</a>
+      </nav>
+      <nav aria-label="Empresa">
+        <h4>Empresa</h4>
+        <a href="#empresa">Sobre nós</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#faq">Dúvidas</a>
+      </nav>
+      <nav aria-label="Acesso">
+        <h4>Acesso</h4>
+        <a data-app="/login">Entrar</a>
+        <a data-app="/register">Criar conta</a>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span data-year>2026</span> NutriAli. Todos os direitos reservados.</p>
+      <p class="footer__safe"><i data-icon="shield-check"></i> Dados protegidos</p>
+    </div>
+  </footer>
+</body>
+</html>
