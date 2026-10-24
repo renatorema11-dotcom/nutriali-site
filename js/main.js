@@ -203,7 +203,7 @@ const counterIO = new IntersectionObserver(
 document.querySelectorAll('[data-count]').forEach((el) => counterIO.observe(el));
 
 // ---------------------------------------------------------------------------
-// Conversa simulada com o Ali (sincronizada com a esfera 3D)
+// Conversa simulada com a Ali (sincronizada com a esfera 3D)
 // ---------------------------------------------------------------------------
 const DIALOG = [
   { who: 'patient', text: 'Ali, o que tem no meu almoço hoje?' },
@@ -217,7 +217,7 @@ const DIALOG = [
 ];
 
 const STATUS = {
-  idle: 'Toque para falar com o Ali',
+  idle: 'Toque para falar com a Ali',
   listening: 'Ouvindo o paciente…',
   thinking: 'Consultando o plano…',
   speaking: 'Ali está falando…',
