@@ -1,4 +1,4 @@
-// Esfera de voz do Ali: superfície orgânica que pulsa quando ele ouve e fala.
+// Esfera de voz da Ali: superfície orgânica que pulsa quando ela ouve e fala.
 import { THREE, createRenderer, fitToCanvas, visibleLoop, pointer, damp, radialTexture, reduceMotion } from './common.js';
 
 // Simplex noise 3D — Ashima Arts / Stefan Gustavson (licença MIT)
@@ -205,7 +205,7 @@ export function initOrb(canvas) {
   );
   scene.add(dust);
 
-  // Ondas sonoras que se expandem quando o Ali fala
+  // Ondas sonoras que se expandem quando a Ali fala
   const waveGeo = new THREE.RingGeometry(0.985, 1, 128);
   const waves = Array.from({ length: 5 }, () => {
     const m = new THREE.Mesh(

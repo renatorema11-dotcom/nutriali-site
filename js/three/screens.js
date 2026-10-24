@@ -308,7 +308,7 @@ function drawHome(ctx) {
     bar(ctx, tx + 10, ty + 78, tw - 20, 5, t.p, t.color);
   });
 
-  // Atalho para o Ali
+  // Atalho para a Ali
   y += 162;
   card(ctx, 16, y, W - 32, 72, { fill: 'rgba(242,247,244,.97)', stroke: '#e0eee6' });
   ctx.save();
@@ -316,7 +316,7 @@ function drawHome(ctx) {
   circle(ctx, 53, y + 36, 21, '#4c8466');
   ctx.restore();
   drawIcon(ctx, 'mic', 43, y + 26, 20, '#ffffff', 2.2);
-  txt(ctx, 'Fale com o Ali', 86, y + 32, { size: 15, weight: 700, color: '#1c5341' });
+  txt(ctx, 'Fale com a Ali', 86, y + 32, { size: 15, weight: 700, color: '#1c5341' });
   txt(ctx, 'Tire dúvidas do seu plano por voz', 86, y + 51, { size: 12.5, color: '#475569' });
   drawIcon(ctx, 'chevron-right', W - 52, y + 26, 20, '#94a3b8');
 
